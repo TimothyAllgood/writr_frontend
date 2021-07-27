@@ -6,9 +6,11 @@ require('./Header.scss');
 function Header() {
   return (
     <header>
+      {/* TODO : IMPLEMENT MOBILE/DESKTOP NAVS */}
       <nav>
         <div className="logo">
           <NavLink to="/">
+            {/* TODO : FIND WAY TO IMPLEMENT SVG */}
             <ReactSVG
               beforeInjection={(svg) => {
                 svg.classList.add('logo-svg');

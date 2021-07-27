@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import SaveModal from '../SaveModal/SaveModal';
 require('./EditorButtons.scss');
 
-function EditorButtons({ nextPrompt }) {
+function EditorButtons({ nextPrompt, story }) {
   const [modal, setModal] = useState(false);
   return (
     <section className="editor-options">
@@ -17,7 +17,7 @@ function EditorButtons({ nextPrompt }) {
           Save As
         </p>
       </div>
-      <SaveModal modal={modal} setModal={setModal} />
+      <SaveModal modal={modal} setModal={setModal} story={story} />
     </section>
   );
 }

@@ -5,7 +5,7 @@ import EditorButtons from '../EditorButtons/EditorButtons';
 
 require('./TextEditor.scss');
 
-function TextEditor({ prompts, setTitle, title }) {
+function TextEditor({ prompts, setTitle, title, story, setStory }) {
   let [i, setI] = useState(0);
 
   const nextPrompt = () => {
@@ -56,6 +56,8 @@ function TextEditor({ prompts, setTitle, title }) {
   useEffect(() => {
     if (quill) {
       quill.on('text-change', () => {
+        setStory(quill.root.innerHTML);
+        console.log(quill);
         console.log(quill.root.innerHTML);
       });
     }
@@ -77,7 +79,7 @@ function TextEditor({ prompts, setTitle, title }) {
         </div>
         <div ref={quillRef} />
       </div>
-      <EditorButtons nextPrompt={nextPrompt} />
+      <EditorButtons nextPrompt={nextPrompt} story={story} />
     </>
   );
 }
