@@ -8,23 +8,26 @@ function Header() {
     <header>
       <nav>
         <div className="logo">
-          <ReactSVG
-            beforeInjection={(svg) => {
-              svg.classList.add('svg-class-name');
-              svg.setAttribute('style', 'width: 200px');
-            }}
-            src="logo.svg"
-          />
+          <NavLink to="/">
+            <ReactSVG
+              beforeInjection={(svg) => {
+                svg.classList.add('logo-svg');
+                svg.setAttribute('style', 'width: 200px');
+              }}
+              src="logo.svg"
+            />
+          </NavLink>
         </div>
         <ul>
           <li>
-            <NavLink to="/">Home</NavLink>
+            <NavLink to="/login" className="btn">
+              Log In
+            </NavLink>
           </li>
           <li>
-            <NavLink to="/login">Log In</NavLink>
-          </li>
-          <li>
-            <NavLink to="/signup">Sign Up</NavLink>
+            <NavLink to="/signup" className="btn">
+              Sign Up
+            </NavLink>
           </li>
         </ul>
       </nav>

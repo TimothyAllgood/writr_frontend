@@ -7,10 +7,12 @@ function HomePage() {
   // TODO : ADD FUNCTIONS TO SAVE STORY TO PC
   // TODO : ADD FUNCTIONS TO GENERATE AND CHANGE PROMPT
   const [prompts, setPrompts] = useState([]);
+  const [title, setTitle] = useState('');
 
   const getPrompts = async () => {
     const allPrompts = await Prompt.getPrompts();
     setPrompts(allPrompts);
+    setTitle(allPrompts[0]);
   };
 
   useEffect(() => {
@@ -18,7 +20,7 @@ function HomePage() {
   }, []);
   return (
     <section className="home">
-      <TextEditor prompts={prompts} />
+      <TextEditor prompts={prompts} setTitle={setTitle} title={title} />
     </section>
   );
 }

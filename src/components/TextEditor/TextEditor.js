@@ -3,7 +3,9 @@ import { useQuill } from 'react-quilljs';
 import 'quill/dist/quill.snow.css';
 import EditorButtons from '../EditorButtons/EditorButtons';
 
-function TextEditor({ prompts }) {
+require('./TextEditor.scss');
+
+function TextEditor({ prompts, setTitle, title }) {
   let [i, setI] = useState(0);
 
   const nextPrompt = () => {
@@ -62,6 +64,17 @@ function TextEditor({ prompts }) {
   return (
     <>
       <div className="container textEditor">
+        <div className="title-container">
+          <label htmlFor="story-title">
+            <h3>Title</h3>
+          </label>
+          <input
+            id="story-title"
+            name="story-title"
+            defaultValue={prompts.length > 0 ? prompts[i] : title}
+            onChange={(e) => setTitle(e.target.value)}
+          ></input>
+        </div>
         <div ref={quillRef} />
       </div>
       <EditorButtons nextPrompt={nextPrompt} />

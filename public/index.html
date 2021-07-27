@@ -34,7 +34,7 @@
 
     <title>Write On</title>
   </head>
-  <body>
+  <body class="preload">
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <!--
@@ -47,5 +47,10 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <script>
+      setTimeout(function () {
+        document.body.className = '';
+      }, 500);
+    </script>
   </body>
 </html>

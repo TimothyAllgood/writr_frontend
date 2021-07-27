@@ -2,8 +2,7 @@
 
 header {
   padding: 25px;
-  .logo {
-  }
+  height: 100px;
   nav {
     width: 90vw;
     margin: 0 auto;
@@ -14,8 +13,12 @@ header {
       display: flex;
       list-style-type: none;
       li {
-        padding: 15px;
+        padding: 10px;
       }
     }
   }
+}
+
+.logo-svg {
+  fill: orange;
 }

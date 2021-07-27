@@ -1,9 +1,19 @@
 .home {
   width: 90vw;
+  height: calc(100vh - 100px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   margin: 0 auto;
 }
 
 .textEditor {
   width: 70vw;
-  height: 500px;
+  height: calc(80vh - 100px);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }

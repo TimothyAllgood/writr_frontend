@@ -12,6 +12,14 @@
 body {
   font-family: $main-font, sans-serif;
   color: $text;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+body.preload * {
+  animation-duration: 0s !important;
+  -webkit-animation-duration: 0s !important;
+  transition: right 0s, opacity 0s !important;
 }
 
 a,
@@ -25,4 +33,18 @@ a:visited {
 .container {
   width: 90vw;
   margin: 0 auto;
+}
+
+.btn {
+  border: 1px solid $border;
+  width: 100%;
+  display: inline;
+  padding: 12px 15px;
+  text-align: center;
+  cursor: pointer;
+  transition: all ease-in 0.3s;
+  &:hover {
+    border: 1px solid $border-hover;
+    color: $text-hover;
+  }
 }

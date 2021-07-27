@@ -1,3 +1,11 @@
 .editor-options {
-  margin: 75px 8px;
+  position: relative;
+  display: flex;
+  margin: 40px 0;
+  justify-content: space-between;
+  .right {
+    .btn:first-of-type {
+      margin-right: 25px;
+    }
+  }
 }
