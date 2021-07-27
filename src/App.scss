@@ -1,5 +1,28 @@
+@import './partials/variables.scss';
+
+// RESET
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+// GENERAL
+
+body {
+  font-family: $main-font, sans-serif;
+  color: $text;
+}
+
+a,
+a:visited {
+  text-decoration: none;
+  color: $text;
+}
+
+// LAYOUT
+
+.container {
+  width: 90vw;
+  margin: 0 auto;
 }

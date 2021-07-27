@@ -1,0 +1,72 @@
+import React, { useEffect, useState } from 'react';
+import { useQuill } from 'react-quilljs';
+import 'quill/dist/quill.snow.css';
+import EditorButtons from '../EditorButtons/EditorButtons';
+
+function TextEditor({ prompts }) {
+  let [i, setI] = useState(0);
+
+  const nextPrompt = () => {
+    if (i < prompts.length - 1) {
+      setI(i + 1);
+    } else {
+      setI(0);
+    }
+  };
+
+  const theme = 'snow';
+  // const theme = 'bubble';
+
+  const modules = {
+    toolbar: [
+      ['bold', 'italic', 'underline', 'strike'],
+      [{ size: ['small', false, 'large', 'huge'] }],
+      [{ header: [1, 2, 3, 4, 5, 6, false] }],
+      [{ color: [] }],
+    ],
+  };
+
+  const placeholder = '';
+
+  const formats = [
+    'bold',
+    'italic',
+    'underline',
+    'strike',
+    'header',
+    'size',
+    'color',
+  ];
+
+  const { quill, quillRef } = useQuill({
+    theme,
+    modules,
+    formats,
+    placeholder,
+  });
+
+  useEffect(() => {
+    if (quill && prompts.length > 0) {
+      quill.setText(prompts[i]);
+    }
+  }, [quill, prompts, i]);
+
+  useEffect(() => {
+    if (quill) {
+      quill.on('text-change', () => {
+        console.log(quill.root.innerHTML);
+      });
+    }
+  }, [quill]);
+
+  return (
+    <>
+      <div className="container textEditor">
+        <div ref={quillRef} />
+      </div>
+      <EditorButtons nextPrompt={nextPrompt} />
+    </>
+  );
+}
+
+export default TextEditor;
