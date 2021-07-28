@@ -3,7 +3,7 @@ import { ReactSVG } from 'react-svg';
 import { NavLink } from 'react-router-dom';
 require('./Header.scss');
 
-function Header() {
+function Header({ isLoggedIn, logout }) {
   return (
     <header>
       {/* TODO : IMPLEMENT MOBILE/DESKTOP NAVS */}
@@ -21,16 +21,26 @@ function Header() {
           </NavLink>
         </div>
         <ul>
-          <li>
-            <NavLink to="/login" className="btn">
-              Log In
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/signup" className="btn">
-              Sign Up
-            </NavLink>
-          </li>
+          {!isLoggedIn ? (
+            <>
+              <li>
+                <NavLink to="/login" className="btn">
+                  Log In
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/signup" className="btn">
+                  Sign Up
+                </NavLink>
+              </li>
+            </>
+          ) : (
+            <li>
+              <p className="btn" onClick={logout}>
+                Logout
+              </p>
+            </li>
+          )}
         </ul>
       </nav>
     </header>

@@ -1,11 +1,13 @@
 import React from 'react';
+import Form from '../../components/Form/Form';
 require('./SignUpPage.scss');
 
-function SignUpPage() {
+function SignUpPage({ signup }) {
   return (
-    <div>
+    <section id="signup-page" className="container">
       <p>Sign Up</p>
-    </div>
+      <Form formAction={signup} formType={'signup'} />
+    </section>
   );
 }
 

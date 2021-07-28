@@ -57,11 +57,9 @@ function TextEditor({ prompts, setTitle, title, story, setStory }) {
     if (quill) {
       quill.on('text-change', () => {
         setStory(quill.root.innerHTML);
-        console.log(quill);
-        console.log(quill.root.innerHTML);
       });
     }
-  }, [quill]);
+  }, [quill, setStory]);
 
   return (
     <>

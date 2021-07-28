@@ -4,11 +4,11 @@ import HomePage from '../pages/HomePage/HomePage';
 import LogInPage from '../pages/LogInPage/LogInPage';
 import SignUpPage from '../pages/SignUpPage/SignUpPage';
 
-const routes = () => (
+const routes = ({ login, signup }) => (
   <Switch>
     <Route exact path="/" component={HomePage} />
-    <Route exact path="/login" component={LogInPage} />
-    <Route exact path="/signup" component={SignUpPage} />
+    <Route exact path="/login" render={() => <LogInPage login={login} />} />
+    <Route exact path="/signup" render={() => <SignUpPage signup={signup} />} />
     {/* <Route path="/login" render={()=> <LoginPage setToken={setToken}/>} />
           <Route path="/register" component={RegisterPage} /> */}
   </Switch>

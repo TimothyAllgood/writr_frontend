@@ -1,11 +1,13 @@
 import React from 'react';
+import Form from '../../components/Form/Form';
 require('./LogInPage.scss');
 
-function LogInPage() {
+function LogInPage({ login }) {
   return (
-    <div>
+    <section id="login-page" className="container">
       <p>Log In</p>
-    </div>
+      <Form formAction={login} formType={'login'} />
+    </section>
   );
 }
 
