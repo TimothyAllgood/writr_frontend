@@ -5,6 +5,7 @@ export default class User {
     mutation Login($loginUsername: String!, $loginPassword: String!) {
       login(username: $loginUsername, password: $loginPassword) {
         token
+        username
       }
     }
   `;
@@ -20,6 +21,15 @@ export default class User {
         password: $signupPassword
       ) {
         username
+      }
+    }
+  `;
+
+  static getUser = gql`
+    query getUser($getUserId: String!) {
+      getUser(id: $getUserId) {
+        username
+        email
       }
     }
   `;

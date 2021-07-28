@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 require('./Form.scss');
 
-function Form({ formAction, formType }) {
+function Form({ formAction, formType, setSuccess }) {
   const [formData, setFormData] = useState({});
 
   const handleChange = (e) => {
@@ -20,6 +20,11 @@ function Form({ formAction, formType }) {
           [formType + 'Password']: formData.password,
         },
       });
+      if (formType === 'login') {
+        setSuccess({ success: true, username: formData.username });
+      } else if (formType === 'signup') {
+        setSuccess({ success: true });
+      }
     } catch (error) {
       console.log(error);
     }

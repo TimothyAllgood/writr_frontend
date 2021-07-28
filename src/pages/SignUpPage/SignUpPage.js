@@ -1,12 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Form from '../../components/Form/Form';
+import { loggedIn } from '../../util/loggedIn';
+
 require('./SignUpPage.scss');
 
-function SignUpPage({ signup }) {
+function SignUpPage({ signup, history }) {
+  const check = loggedIn();
+  const [success, setSuccess] = useState({ success: false, username: '' });
+
+  if (success.success) {
+    history.push(`/`);
+  }
+
   return (
     <section id="signup-page" className="container">
-      <p>Sign Up</p>
-      <Form formAction={signup} formType={'signup'} />
+      {check ? (
+        <div>
+          <p>Logged In</p>
+        </div>
+      ) : (
+        <>
+          <p>Log In</p>
+          <Form
+            formAction={signup}
+            formType={'signup'}
+            setSuccess={setSuccess}
+          />
+        </>
+      )}
     </section>
   );
 }
