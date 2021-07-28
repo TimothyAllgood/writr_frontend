@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+require('./Form.scss');
 
 function Form({ formAction, formType }) {
   const [formData, setFormData] = useState({});
@@ -25,7 +26,7 @@ function Form({ formAction, formType }) {
   };
 
   return (
-    <form onSubmit={(e) => handleSubmit(e)}>
+    <form className="user-form" onSubmit={(e) => handleSubmit(e)}>
       <div className="form-group">
         <label htmlFor="username">
           <p>Username</p>
@@ -61,7 +62,11 @@ function Form({ formAction, formType }) {
           onChange={(e) => handleChange(e)}
         />
       </div>
-      <input type="submit" value="Log In" />
+      <input
+        type="submit"
+        className="btn"
+        value={formType === 'signup' ? 'Sign Up' : 'Log In'}
+      />
     </form>
   );
 }

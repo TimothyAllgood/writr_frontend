@@ -1,0 +1,13 @@
+@import '../../partials/variables.scss';
+.user-form {
+  input {
+    border: 1px solid $border;
+    padding: 10px 15px;
+  }
+  .btn {
+    width: 100%;
+    display: block;
+    cursor: pointer;
+    margin-top: 25px;
+  }
+}

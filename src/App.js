@@ -3,8 +3,16 @@ import { useMutation, gql } from '@apollo/client';
 import { useEffect, useState } from 'react';
 import Header from './components/Header/Header';
 import Routes from './config/Routes';
+import User from './models/User';
+import setAuthHeader from './util/setAuthHeader';
 
 require('./App.scss');
+
+// TODO : Redirect on log in and sign up
+// TODO : Create profile page
+// TODO : View others profiles and their stories
+// TODO : Display all saved stories
+// TODO : Save stories to DB
 
 function App() {
   const [isLoggedIn, setisLoggedIn] = useState(false);
@@ -17,55 +25,13 @@ function App() {
     }
   }, []);
 
-  // GRAPHQL QUERY EXAMPLE
-  // const AllUsers = gql`
-  //   query GetAllUsers {
-  //     getAllUsers {
-  //       username
-  //     }
-  //   }
-  // `;
-  // const { loading, error, data } = useQuery(AllUsers);
+  const [login, { data: loginData }] = useMutation(User.loginMutation);
 
-  // if (loading) return <p>Loading...</p>;
-  // if (error) return <p>Error</p>;
-  // if (data) {
-  //   console.log(data.getAllUsers[0]);
-  // }
-  //
-
-  // Log In Mutation
-  const loginMutation = gql`
-    mutation Login($loginUsername: String!, $loginPassword: String!) {
-      login(username: $loginUsername, password: $loginPassword) {
-        token
-      }
-    }
-  `;
-
-  const [login, { data: loginData }] = useMutation(loginMutation);
-
-  //Sign Up Mutation
-  const signupMutation = gql`
-    mutation signup(
-      $signupUsername: String!
-      $signupEmail: String!
-      $signupPassword: String!
-    ) {
-      signup(
-        username: $signupUsername
-        email: $signupEmail
-        password: $signupPassword
-      ) {
-        username
-      }
-    }
-  `;
-
-  const [signup, { data: signupData }] = useMutation(signupMutation);
+  const [signup, { data: signupData }] = useMutation(User.signupMutation);
 
   // Logout
   const logout = () => {
+    setAuthHeader();
     localStorage.removeItem('token');
     setisLoggedIn(false);
   };
@@ -74,6 +40,7 @@ function App() {
   useEffect(() => {
     if (loginData) {
       if (loginData.login.token) {
+        setAuthHeader(loginData.login.token);
         setisLoggedIn(true);
         localStorage.setItem('token', loginData.login.token);
       }
