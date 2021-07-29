@@ -5,7 +5,15 @@ import EditorButtons from '../EditorButtons/EditorButtons';
 
 require('./TextEditor.scss');
 
-function TextEditor({ prompts, setTitle, title, story, setStory }) {
+function TextEditor({
+	prompts,
+	setTitle,
+	title,
+	story,
+	setStory,
+	setStoryId,
+	storyId,
+}) {
 	let [i, setI] = useState(0);
 
 	const nextPrompt = () => {
@@ -76,7 +84,13 @@ function TextEditor({ prompts, setTitle, title, story, setStory }) {
 				</div>
 				<div ref={quillRef} />
 			</div>
-			<EditorButtons nextPrompt={nextPrompt} story={story} title={title} />
+			<EditorButtons
+				nextPrompt={nextPrompt}
+				story={story}
+				title={title}
+				setStoryId={setStoryId}
+				storyId={storyId}
+			/>
 		</>
 	);
 }

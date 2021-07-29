@@ -5,28 +5,44 @@ import { loggedIn, decodeToken } from '../../util/loggedIn';
 import { useMutation } from '@apollo/client';
 require('./EditorButtons.scss');
 
-function EditorButtons({ nextPrompt, story, title }) {
+function EditorButtons({ nextPrompt, story, title, setStoryId, storyId }) {
 	const [modal, setModal] = useState(false);
 
 	const [createStory, { data: createStoryData }] = useMutation(
 		Story.createStoryMutation
 	);
 
+	const [updateStory, { data: updateStoryData }] = useMutation(
+		Story.updateStoryMutation
+	);
+
 	const saveStory = async () => {
 		const user = decodeToken();
 		const userId = user.id;
 		const username = user.user;
-		console.log(user);
 		try {
-			await createStory({
-				variables: {
-					createStoryTitle: title,
-					createStoryStory: story,
-					createStoryAuthorId: userId,
-					createStoryAuthorUsername: username,
-				},
-			});
-			console.log('success');
+			if (!storyId) {
+				const storyData = await createStory({
+					variables: {
+						createStoryTitle: title,
+						createStoryStory: story,
+						createStoryAuthorId: userId,
+						createStoryAuthorUsername: username,
+					},
+				});
+
+				if (storyData) {
+					setStoryId(storyData.data.createStory._id);
+				}
+			} else {
+				await updateStory({
+					variables: {
+						updateStoryId: storyId,
+						updateStoryTitle: title,
+						updateStoryStory: story,
+					},
+				});
+			}
 		} catch (error) {
 			console.log(error);
 		}

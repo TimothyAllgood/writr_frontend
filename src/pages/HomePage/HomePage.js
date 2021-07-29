@@ -10,6 +10,7 @@ function HomePage() {
 	const [prompts, setPrompts] = useState([]);
 	const [title, setTitle] = useState('');
 	const [story, setStory] = useState();
+	const [storyId, setStoryId] = useState('');
 
 	const getPrompts = async () => {
 		const allPrompts = await Prompt.getPrompts();
@@ -28,6 +29,8 @@ function HomePage() {
 				title={title}
 				setStory={setStory}
 				story={story}
+				setStoryId={setStoryId}
+				storyId={storyId}
 			/>
 		</section>
 	);
