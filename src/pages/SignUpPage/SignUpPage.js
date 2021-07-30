@@ -5,31 +5,30 @@ import { loggedIn } from '../../util/loggedIn';
 require('./SignUpPage.scss');
 
 function SignUpPage({ signup, history }) {
-  const check = loggedIn();
-  const [success, setSuccess] = useState({ success: false, username: '' });
+	const check = loggedIn();
+	const [success, setSuccess] = useState({ success: false, username: '' });
 
-  if (success.success) {
-    history.push(`/`);
-  }
+	if (success.success) {
+		history.push(`/`);
+	}
 
-  return (
-    <section id="signup-page" className="container">
-      {check ? (
-        <div>
-          <p>Logged In</p>
-        </div>
-      ) : (
-        <>
-          <p>Log In</p>
-          <Form
-            formAction={signup}
-            formType={'signup'}
-            setSuccess={setSuccess}
-          />
-        </>
-      )}
-    </section>
-  );
+	return (
+		<section id='signup-page' className='container'>
+			{check ? (
+				<div>
+					<p>Logged In</p>
+				</div>
+			) : (
+				<>
+					<Form
+						formAction={signup}
+						formType={'signup'}
+						setSuccess={setSuccess}
+					/>
+				</>
+			)}
+		</section>
+	);
 }
 
 export default SignUpPage;

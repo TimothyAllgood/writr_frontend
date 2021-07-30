@@ -62,4 +62,26 @@ export default class User {
 			}
 		}
 	`;
+
+	static getUserStoriesMutation = gql`
+		query getUserStories($getUserStoriesId: String!) {
+			getUserStories(id: $getUserStoriesId) {
+				title
+				story
+				_id
+			}
+		}
+	`;
+
+	static getStoryById = gql`
+		query getUserById($getStoryById: String!) {
+			getStoryById(id: $getStoryById) {
+				title
+				story
+				author {
+					username
+				}
+			}
+		}
+	`;
 }

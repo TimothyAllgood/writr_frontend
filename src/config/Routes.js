@@ -5,6 +5,7 @@ import LogInPage from '../pages/LogInPage/LogInPage';
 import SignUpPage from '../pages/SignUpPage/SignUpPage';
 import ProfilePage from '../pages/ProfilePage/ProfilePage';
 import StoryPage from '../pages/StoryPage/StoryPage';
+import FullStory from '../components/FullStory/FullStory';
 
 const routes = ({ login, signup }) => (
 	<Switch>
@@ -25,6 +26,11 @@ const routes = ({ login, signup }) => (
 			render={(matchProps) => <ProfilePage {...matchProps} />}
 		/>
 		<Route exact path='/stories' component={StoryPage} />
+		<Route
+			exact
+			path='/story/:id'
+			render={(matchProps) => <FullStory {...matchProps} />}
+		/>
 	</Switch>
 );
 

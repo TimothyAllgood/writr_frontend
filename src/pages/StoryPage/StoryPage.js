@@ -1,5 +1,6 @@
 import { useMutation, useQuery } from '@apollo/client';
-import React, { useState } from 'react';
+import React from 'react';
+import TruncatedStory from '../../components/TruncatedStory/TruncatedStory';
 import Story from '../../models/Story';
 
 function StoryPage() {
@@ -8,12 +9,11 @@ function StoryPage() {
 		Story.deleteStoryMutation
 	);
 	if (loading) return <p>Loading ...</p>;
-	console.log(data.getAllStories);
 
 	const stories = data.getAllStories.map((story) => {
 		return (
 			<>
-				<p key='1'>{story.title}</p>
+				<TruncatedStory key={story._id} story={story} />
 				<p
 					onClick={async () => {
 						await deleteStory({
@@ -28,7 +28,7 @@ function StoryPage() {
 			</>
 		);
 	});
-	return <section>{stories}</section>;
+	return <section className='container'>{stories}</section>;
 }
 
 export default StoryPage;

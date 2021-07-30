@@ -14,3 +14,49 @@
 		border: 1px solid red;
 	}
 }
+
+.form-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 70vw;
+	.inner-form {
+		width: 50%;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		border: 1px solid $border;
+		border-radius: 5px;
+		border-right: none;
+		border-bottom-right-radius: 0;
+		border-top-right-radius: 0;
+		position: relative;
+		h2 {
+			position: absolute;
+			top: 100px;
+		}
+		.error-msg {
+			color: $text-light;
+			text-align: center;
+			bottom: 100px;
+			position: absolute;
+			background-color: red;
+			padding: 10px 15px;
+			margin-left: 17.5px;
+			transition: all ease 0.5s;
+			border-radius: 5px;
+		}
+		.hide {
+			opacity: 0;
+		}
+	}
+	.image {
+		background: $main;
+		width: 70%;
+		height: 70vh;
+		border-bottom-right-radius: 5px;
+		border-top-right-radius: 5px;
+	}
+}
