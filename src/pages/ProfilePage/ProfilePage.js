@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client';
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import User from '../../models/User';
 import Story from '../../models/Story';
 import TruncatedStory from '../../components/TruncatedStory/TruncatedStory';
@@ -10,41 +10,12 @@ require('./ProfilePage.scss');
 function ProfilePage() {
 	const check = loggedIn();
 	const decoded = decodeToken(localStorage.getItem('token'));
-	const [userStoriesEl, setUserStoriesEl] = useState();
-	const [pagination, setPagination] = useState({
-		check: false,
-		elements: [],
-		amount: 0,
-	});
-	useEffect(() => {
-		if (userStoriesEl) {
-			const parentRect = userStoriesEl.getBoundingClientRect();
-			const stories = document.querySelectorAll('.story');
-
-			stories.forEach((story) => {
-				let childRect = story.getBoundingClientRect();
-
-				if (childRect.bottom > parentRect.bottom) {
-					setPagination({
-						check: true,
-						elements: [...pagination.elements, story],
-						amount: stories.length - 1,
-					});
-				}
-			});
-		}
-	}, [userStoriesEl]);
-
-	// useEffect(() => {
-	// 	if (pagination.check) {
-	// 		stories.pop();
-	// 	}
-	// }, [pagination]);
 
 	const { loading, data: userData } = useQuery(User.getUser, {
 		variables: {
 			getUserId: decoded.id,
 		},
+		pollInterval: 500,
 	});
 
 	const { storiesLoading, data: storyData } = useQuery(
@@ -53,6 +24,7 @@ function ProfilePage() {
 			variables: {
 				getUserStoriesId: decoded.id,
 			},
+			pollInterval: 500,
 		}
 	);
 
@@ -62,7 +34,6 @@ function ProfilePage() {
 	const stories =
 		storyData &&
 		storyData.getUserStories.map((story, i) => {
-			const stuff = [];
 			const truncatedStory = (
 				<TruncatedStory key={story._id} story={story} id={story._id} />
 			);
@@ -92,7 +63,7 @@ function ProfilePage() {
 			)}
 
 			{storyData ? (
-				<div className='user-stories' ref={(ref) => setUserStoriesEl(ref)}>
+				<div className='user-stories'>
 					<h2>Your Recent Stories</h2>
 					{stories && stories}
 				</div>

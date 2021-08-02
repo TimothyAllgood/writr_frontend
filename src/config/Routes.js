@@ -6,6 +6,7 @@ import SignUpPage from '../pages/SignUpPage/SignUpPage';
 import ProfilePage from '../pages/ProfilePage/ProfilePage';
 import StoryPage from '../pages/StoryPage/StoryPage';
 import FullStory from '../components/FullStory/FullStory';
+import EditPage from '../pages/EditPage/EditPage';
 
 const routes = ({ login, signup }) => (
 	<Switch>
@@ -30,6 +31,11 @@ const routes = ({ login, signup }) => (
 			exact
 			path='/story/:id'
 			render={(matchProps) => <FullStory {...matchProps} />}
+		/>
+		<Route
+			exact
+			path='/story/edit/:id'
+			render={(matchProps) => <EditPage {...matchProps} />}
 		/>
 	</Switch>
 );

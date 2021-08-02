@@ -56,8 +56,11 @@ function TextEditor({
 	});
 
 	useEffect(() => {
-		if (quill && prompts.length > 0) {
+		if (quill && prompts && prompts.length > 0) {
 			quill.setText(prompts[i]);
+		}
+		if (quill && story) {
+			quill.clipboard.dangerouslyPasteHTML(story);
 		}
 	}, [quill, prompts, i]);
 
@@ -79,13 +82,13 @@ function TextEditor({
 					<input
 						id='story-title'
 						name='story-title'
-						defaultValue={prompts.length > 0 ? prompts[i] : title}
+						defaultValue={prompts && prompts.length > 0 ? prompts[i] : title}
 						onChange={(e) => setTitle(e.target.value)}></input>
 				</div>
 				<div ref={quillRef} />
 			</div>
 			<EditorButtons
-				nextPrompt={nextPrompt}
+				nextPrompt={prompts && nextPrompt}
 				story={story}
 				title={title}
 				setStoryId={setStoryId}

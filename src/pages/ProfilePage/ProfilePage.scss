@@ -84,3 +84,16 @@
 		}
 	}
 }
+
+@media screen and(max-width: 800px) {
+	.profile {
+		flex-direction: column;
+		height: 100%;
+		.profile-info {
+			flex-basis: initial;
+			height: 60vh;
+			margin: 0;
+			margin-bottom: 25px;
+		}
+	}
+}

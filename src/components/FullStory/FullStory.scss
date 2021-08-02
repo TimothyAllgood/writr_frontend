@@ -1,0 +1,49 @@
+.story {
+	align-items: flex-start;
+	h3 {
+		margin-bottom: 25px;
+	}
+	.info {
+		width: 90vw;
+		display: flex;
+		justify-content: space-between;
+		.btn:first-of-type {
+			margin-right: 25px;
+		}
+	}
+	p {
+		margin-bottom: 25px;
+	}
+}
+
+.confirm {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	.inner {
+		background: #ccc;
+		border-radius: 5px;
+		padding: 50px 100px 65px;
+	}
+	h4 {
+		margin-bottom: 25px;
+	}
+
+	.btn:first-of-type {
+		margin-right: 25px;
+	}
+	z-index: 1;
+	transition: all ease 0.5s;
+}
+
+.hide {
+	opacity: 0;
+	z-index: -99;
+}

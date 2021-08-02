@@ -4,7 +4,9 @@ import TruncatedStory from '../../components/TruncatedStory/TruncatedStory';
 import Story from '../../models/Story';
 
 function StoryPage() {
-	const { data, loading, error } = useQuery(Story.getAllStoriesQuery);
+	const { data, loading, error } = useQuery(Story.getAllStoriesQuery, {
+		pollInterval: 500,
+	});
 	const [deleteStory, { data: deletetedData }] = useMutation(
 		Story.deleteStoryMutation
 	);

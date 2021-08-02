@@ -50,7 +50,10 @@ function EditorButtons({ nextPrompt, story, title, setStoryId, storyId }) {
 	return (
 		<section className='editor-options'>
 			<div className='left'>
-				<p onClick={() => nextPrompt()} className='btn'>
+				<p
+					onClick={() => nextPrompt()}
+					className='btn'
+					style={!nextPrompt ? { display: 'none' } : { display: 'initial' }}>
 					Get New Prompt
 				</p>
 			</div>
