@@ -41,6 +41,7 @@ export default class User {
 				_id
 				author {
 					id
+					username
 				}
 			}
 		}

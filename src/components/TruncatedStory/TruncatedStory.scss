@@ -1,3 +1,5 @@
+@import '../../partials/variables.scss';
+
 .story {
 	display: flex;
 	flex-direction: column;
@@ -15,5 +17,49 @@
 	.link {
 		padding: 12px 0;
 		width: 100%;
+	}
+}
+
+.story-flex {
+	display: flex;
+	flex-direction: row;
+	position: relative;
+	align-items: stretch !important;
+
+	.story-details {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		width: 70%;
+
+		.link {
+			text-align: right;
+		}
+	}
+	.to-user {
+		width: 30%;
+		margin-right: 50px;
+	}
+	.image {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+		position: relative;
+		background-color: $main;
+		text-transform: uppercase;
+		color: $text-light;
+		.written-by {
+			h3,
+			h4 {
+				font-weight: normal;
+			}
+			text-align: center;
+		}
+		.inner-text {
+			position: relative;
+			height: 0;
+			padding: 56.25% 0 0 0;
+		}
 	}
 }

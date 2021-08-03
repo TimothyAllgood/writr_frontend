@@ -9,6 +9,11 @@
 
 // GENERAL
 
+body,
+html {
+	height: 100%;
+}
+
 body {
 	background-color: $bg;
 	font-family: $main-font, sans-serif;

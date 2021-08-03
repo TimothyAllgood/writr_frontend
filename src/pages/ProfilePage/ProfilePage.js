@@ -1,5 +1,5 @@
-import { useQuery } from '@apollo/client';
-import React, { useEffect, useState } from 'react';
+import { useMutation, useQuery } from '@apollo/client';
+import React from 'react';
 import User from '../../models/User';
 import Story from '../../models/Story';
 import TruncatedStory from '../../components/TruncatedStory/TruncatedStory';
@@ -7,13 +7,11 @@ import TruncatedStory from '../../components/TruncatedStory/TruncatedStory';
 import { loggedIn, decodeToken } from '../../util/loggedIn';
 require('./ProfilePage.scss');
 
-function ProfilePage() {
+function ProfilePage({ match }) {
 	const check = loggedIn();
-	const decoded = decodeToken(localStorage.getItem('token'));
-
-	const { loading, data: userData } = useQuery(User.getUser, {
+	const { loading, data: userData } = useQuery(User.getUserByUsername, {
 		variables: {
-			getUserId: decoded.id,
+			getUserByUsernameUsername: match.params.username,
 		},
 		pollInterval: 500,
 	});
@@ -22,7 +20,7 @@ function ProfilePage() {
 		Story.getUserStoriesMutation,
 		{
 			variables: {
-				getUserStoriesId: decoded.id,
+				getUserStoriesId: userData && userData.getUserByUsername.id,
 			},
 			pollInterval: 500,
 		}
@@ -46,7 +44,7 @@ function ProfilePage() {
 			{userData && (
 				<div className='profile-info'>
 					<div className='username'>
-						<h3>{userData.getUser.username.toUpperCase()}</h3>
+						<h3>{userData.getUserByUsername.username.toUpperCase()}</h3>
 						<p className='tag'>Author</p>
 					</div>
 
@@ -64,7 +62,7 @@ function ProfilePage() {
 
 			{storyData ? (
 				<div className='user-stories'>
-					<h2>Your Recent Stories</h2>
+					<h2>Recent Stories</h2>
 					{stories && stories}
 				</div>
 			) : (
