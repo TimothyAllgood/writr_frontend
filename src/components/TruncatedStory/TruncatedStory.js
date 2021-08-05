@@ -15,7 +15,7 @@ function TruncatedStory({ story, id }) {
 					<div className='image'>
 						<div className='written-by'>
 							<h4>Written by:</h4>
-							<h3>{story.author && story.author.username}</h3>
+							<h3>{story.author?.username}</h3>
 						</div>
 						<div className='inner-text'></div>
 					</div>

@@ -4,9 +4,6 @@ import Prompt from '../../models/Prompt';
 require('./HomePage.scss');
 
 function HomePage() {
-	// TODO : ADD FUNCTIONS TO SAVE STORY TO PC
-	// TODO : ADD FUNCTIONS TO SAVE STORY TO DB
-
 	const [prompts, setPrompts] = useState([]);
 	const [title, setTitle] = useState('');
 	const [story, setStory] = useState();
